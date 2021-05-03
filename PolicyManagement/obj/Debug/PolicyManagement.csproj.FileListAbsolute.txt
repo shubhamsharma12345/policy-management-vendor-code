@@ -202,3 +202,4 @@ F:\CognizantTrainingProject\PolicyManagement\PolicyManagement\obj\Debug\PolicyMa
 F:\CognizantTrainingProject\PolicyManagement\PolicyManagement\obj\Debug\PolicyManagement.pdb
 F:\CognizantTrainingProject\PolicyManagement\PolicyManagement\obj\Debug\PolicyManagement.Migrations.poicymanagement.resources
 F:\CognizantTrainingProject\PolicyManagement\PolicyManagement\obj\Debug\PolicyManagement.csproj.GenerateResource.cache
+F:\CognizantTrainingProject\PolicyManagement\PolicyManagement\obj\Debug\PolicyManagement.Migrations.policy.resources

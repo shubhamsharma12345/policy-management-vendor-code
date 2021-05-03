@@ -33,7 +33,7 @@ namespace PolicyManagement.Controllers
            
             return View();
         }
-        //[Authorize]
+        
         public ActionResult PolicyAdminLogin()
         {
             return View();
@@ -79,21 +79,31 @@ namespace PolicyManagement.Controllers
         {
             return View();
         }
+
+        
         public ActionResult VendorLogin()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult VendorLogin(SystemAdmin admin)
         {
             if (ModelState.IsValid)
             {
-                var searchAdmin = db.PolicyVendors.Where(x => x.PolicyVendorRegNo.Equals(admin.UserId) && x.Password.Equals(admin.Password)).FirstOrDefault();
+                var searchAdmin = db.PolicyVendors.Where(x => x.PolicyVendorRegNo.Equals(admin.UserId) && x.Password.Equals(admin.Password) && x.VendorStatus == 1).FirstOrDefault();
                 //&& x.VendorStatus==1).FirstOrDefault();
 
                 if (searchAdmin != null)
                 {
                     FormsAuthentication.SetAuthCookie(admin.UserId, true);
+                    //HttpCookie hc1 = new HttpCookie("UserName", searchAdmin.VendorName.ToString());
+                    //Response.Cookies.Add(hc1);
+
+                    //HttpCookie hc2 = new HttpCookie("UserEmail", searchAdmin.EmailId.ToString());
+                    //Response.Cookies.Add(hc2);
+                    Session["UserName"] = searchAdmin.VendorName.ToString();
+                    Session["UserEmail"] = searchAdmin.EmailId.ToString();
                     return RedirectToAction("PolicyVendorHome");
                 }
                 else 
@@ -104,10 +114,19 @@ namespace PolicyManagement.Controllers
             return View();
 
         }
+
+        public ActionResult VendorLogout()
+        {
+            Session.Abandon();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("VendorLogin");
+        }
         public ActionResult VerifiedMsg()
         {
             return View();
         }
+
+        
         public ActionResult PolicyVendorRegister()
         {
 
@@ -117,12 +136,21 @@ namespace PolicyManagement.Controllers
         [HttpPost]
         public ActionResult PolicyVendorRegister(PolicyVendor vendor)
         {
-            vendor.VendorStatus = 0;
-            db.PolicyVendors.Add(vendor);
-            db.SaveChanges();
-            ViewBag.VendorRegister = "Registration Successful.";
-            return RedirectToAction("VerifiedMsg");
+            if (ModelState.IsValid)
+            {
+                vendor.VendorStatus = 0;
+                db.PolicyVendors.Add(vendor);
+                db.SaveChanges();
+                ViewBag.message = "Registration Successful.";
+                return RedirectToAction("VerifiedMsg");
+            }
+            else
+            {
+                return View(vendor);
+            }
         }
+
+       
         public ActionResult PolicyVendorHome()
         {
             return View();
@@ -136,7 +164,7 @@ namespace PolicyManagement.Controllers
 
             return View();
         }
-
+        //[Authorize]
         public ActionResult AdminHomePage()
         {
             var vendors = db.PolicyVendors.ToList();

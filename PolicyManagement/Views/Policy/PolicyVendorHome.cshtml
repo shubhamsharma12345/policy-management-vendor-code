@@ -1,7 +1,16 @@
-﻿
+﻿@model PolicyManagement.Models.PolicyVendor
 @{
     ViewBag.Title = "PolicyVendorHome";
 }
 
 <h2>PolicyVendorHome- Successfully Registered</h2>
+@*@if(Request.Cookies["UserName"] ! =null)
+{
+    <h1>Welcome @Request.Cookies["UserName"].Value.ToString()</h1>
+}*@
 
+@if(Session["UserEmail"] !=null)
+{
+    <h1>Welcome @Session["UserEmail"].ToString()</h1>
+    <h1>@Html.ActionLink("Logout", "Logout", "policy")</h1>
+}

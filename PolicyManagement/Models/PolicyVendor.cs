@@ -73,18 +73,18 @@ namespace PolicyManagement.Models
         public string VendorWebsite { get; set; }
 
 
-        //[DataType(DataType.DateTime)]
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        //[Required(ErrorMessage = "Please enter Certificate issued Date")]
-        //[Display(Name = "CertificateIssuedDate")]
-        //public DateTime CertificateIssuedDate { get; set; }
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Please enter Certificate issued Date")]
+        [Display(Name = "CertificateIssuedDate")]
+        public DateTime CertificateIssuedDate { get; set; }
 
 
-        //[DataType(DataType.DateTime)]
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        //[Required(ErrorMessage = "Please enter certificate validity date")]
-        //[Display(Name = "Certtificate Validity date")]
-        //public DateTime CertificateValidityDate { get; set; }
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Please enter certificate validity date")]
+        [Display(Name = "Certtificate Validity date")]
+        public DateTime CertificateValidityDate { get; set; }
 
 
         [Display(Name = "Year Of Establishment")]

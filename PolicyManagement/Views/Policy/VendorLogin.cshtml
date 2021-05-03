@@ -2,7 +2,14 @@
 @{
     ViewBag.Title = "VendorLogin";
 }
-
+@if (Session["UserEmail"] != null)
+{
+    <h1>Welcome @Session["UserEmail"].ToString()</h1>
+}
+else
+{
+    <h1>@Html.ActionLink("Login", "VendorLogin" , "Policy")</h1>
+}
 <h2>VendorLogin</h2>
 
 @using (Html.BeginForm(FormMethod.Post))
